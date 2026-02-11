@@ -6,7 +6,10 @@ self.addEventListener("install", event => {
         "style.css",
         "app.js",
         "manifest.json",
-        "beep.mp3"
+        "beep.mp3",
+        "boot.mp3",
+        "icon-192.png",
+        "icon-512.png"
       ]);
     })
   );

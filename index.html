@@ -2,38 +2,38 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Jarvis Assistente</title>
+  <title>J.A.R.V.I.S</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
-<div class="container">
+<div id="splash" class="splash">
+  <div class="reactor"></div>
+  <h1>J.A.R.V.I.S</h1>
+</div>
 
-  <h1 class="titulo">JARVIS</h1>
-  <p>Fale: <b>"Assistente"</b></p>
+<div class="interface hidden">
 
-  <button onclick="iniciar()">Ativar Assistente</button>
+  <div class="reactor small"></div>
 
-  <div id="central" class="central">
-    <h2>Central Ativa</h2>
+  <h2>Sistema Online</h2>
 
-    <div class="atalhos">
-      <button onclick="abrirApp('whatsapp')">WhatsApp</button>
-      <button onclick="abrirApp('youtube')">YouTube</button>
-    </div>
-
+  <div class="atalhos">
+    <button onclick="abrirApp('whatsapp')">WhatsApp</button>
+    <button onclick="abrirApp('youtube')">YouTube</button>
   </div>
 
 </div>
 
+<audio id="boot" src="boot.mp3"></audio>
 <audio id="beep" src="beep.mp3"></audio>
 
 <script src="app.js"></script>
 <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-  }
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
 </script>
 
 </body>

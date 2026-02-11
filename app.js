@@ -1,9 +1,23 @@
 let recognition;
 
-function iniciar() {
+window.onload = function() {
+  iniciarSistema();
+};
 
-  const beep = document.getElementById("beep");
-  beep.play();
+function iniciarSistema() {
+
+  const boot = document.getElementById("boot");
+  boot.play();
+
+  setTimeout(() => {
+    document.getElementById("splash").style.display = "none";
+    document.querySelector(".interface").classList.remove("hidden");
+    falar("Sistema online. Aguardando comando.");
+    iniciarReconhecimento();
+  }, 3000);
+}
+
+function iniciarReconhecimento() {
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   recognition = new SpeechRecognition();
@@ -32,8 +46,9 @@ function iniciar() {
 }
 
 function ativarJarvis() {
+  const beep = document.getElementById("beep");
+  beep.play();
   falar("Sim chefe");
-  document.getElementById("central").style.display = "block";
 }
 
 function falar(texto) {
@@ -43,7 +58,6 @@ function falar(texto) {
 }
 
 function abrirApp(app) {
-
   if (app === "whatsapp") {
     window.location.href = "https://wa.me/";
   }
