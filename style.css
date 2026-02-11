@@ -1,17 +1,13 @@
 body {
   margin: 0;
-  background: black;
+  background: radial-gradient(circle at center, #001018, #000);
   color: #00ffff;
   font-family: Arial, sans-serif;
   text-align: center;
   overflow: hidden;
 }
 
-.hidden {
-  display: none;
-}
-
-/* SPLASH SCREEN */
+/* Splash */
 
 .splash {
   position: fixed;
@@ -24,20 +20,21 @@ body {
   align-items: center;
 }
 
-/* REATOR */
+/* REATOR BASE */
 
 .reactor {
   width: 200px;
   height: 200px;
-  border: 8px solid #00ffff;
+  border: 6px solid #00ffff;
   border-radius: 50%;
-  box-shadow: 0 0 40px #00ffff;
-  animation: spin 4s linear infinite;
+  box-shadow: 0 0 30px #00ffff;
+  animation: spin 6s linear infinite;
+  transition: all 0.2s ease;
 }
 
 .reactor.small {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   margin: 20px auto;
 }
 
@@ -46,31 +43,39 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* INTERFACE */
+/* Pulsar com voz */
 
-.interface {
-  padding-top: 50px;
-  animation: fadeIn 2s ease-in;
+.pulse {
+  box-shadow: 0 0 60px #00ffff, 0 0 120px #00ffff;
+  transform: scale(1.1);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Interface holográfica */
+
+.interface {
+  padding-top: 40px;
+  animation: holograma 2s ease-in;
+}
+
+@keyframes holograma {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 button {
-  background: transparent;
+  background: rgba(0, 255, 255, 0.1);
   border: 2px solid #00ffff;
   color: #00ffff;
-  padding: 15px 25px;
-  margin: 10px;
-  border-radius: 10px;
+  padding: 15px 30px;
+  margin: 15px;
+  border-radius: 12px;
   cursor: pointer;
+  font-size: 16px;
   transition: 0.3s;
 }
 
 button:hover {
   background: #00ffff;
   color: black;
-  box-shadow: 0 0 20px #00ffff;
+  box-shadow: 0 0 25px #00ffff;
 }

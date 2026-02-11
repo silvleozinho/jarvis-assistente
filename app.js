@@ -1,11 +1,12 @@
 let recognition;
+let reactor;
 
 window.onload = function() {
+  reactor = document.querySelector(".reactor");
   iniciarSistema();
 };
 
 function iniciarSistema() {
-
   const boot = document.getElementById("boot");
   boot.play();
 
@@ -14,14 +15,19 @@ function iniciarSistema() {
     document.querySelector(".interface").classList.remove("hidden");
     falar("Sistema online. Aguardando comando.");
     iniciarReconhecimento();
-  }, 3000);
+  }, 2500);
 }
 
 function iniciarReconhecimento() {
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SpeechRecognition();
 
+  if (!SpeechRecognition) {
+    alert("Seu navegador não suporta reconhecimento de voz.");
+    return;
+  }
+
+  recognition = new SpeechRecognition();
   recognition.lang = "pt-BR";
   recognition.continuous = true;
 
@@ -29,10 +35,14 @@ function iniciarReconhecimento() {
     const fala = event.results[event.results.length - 1][0].transcript.toLowerCase();
     console.log("Você disse:", fala);
 
+    pulsar();
+
+    // Ativação principal
     if (fala.includes("assistente")) {
-      ativarJarvis();
+      falar("Sim chefe");
     }
 
+    // Abrir apps
     if (fala.includes("abrir whatsapp")) {
       abrirApp("whatsapp");
     }
@@ -40,15 +50,32 @@ function iniciarReconhecimento() {
     if (fala.includes("abrir youtube")) {
       abrirApp("youtube");
     }
+
+    // Modo conversacional simples
+    if (fala.includes("quem é você")) {
+      falar("Eu sou JARVIS, seu assistente pessoal.");
+    }
+
+    if (fala.includes("que horas são")) {
+      const hora = new Date().toLocaleTimeString();
+      falar("Agora são " + hora);
+    }
+
+    if (fala.includes("me motive")) {
+      falar("Disciplina constrói impérios. Continue.");
+    }
   };
 
   recognition.start();
 }
 
-function ativarJarvis() {
-  const beep = document.getElementById("beep");
-  beep.play();
-  falar("Sim chefe");
+/* Reator pulsando */
+
+function pulsar() {
+  reactor.classList.add("pulse");
+  setTimeout(() => {
+    reactor.classList.remove("pulse");
+  }, 400);
 }
 
 function falar(texto) {
